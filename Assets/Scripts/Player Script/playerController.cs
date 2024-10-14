@@ -27,6 +27,7 @@ public class playerController : MonoBehaviour
     private float _speed;
     private float hInput;
     private float vInput;
+    private Vector3 move;
     private Vector3 velocity;
 
 
@@ -53,7 +54,7 @@ public class playerController : MonoBehaviour
 
         _speed = _walkSpeed;
 
-        Vector3 move = new Vector3(hInput, 0, vInput);
+        move = new Vector3(hInput, 0, vInput);
 
         //Run
         Running();
@@ -78,13 +79,9 @@ public class playerController : MonoBehaviour
         Jump();
         }
         //Rolling
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if (velocity.magnitude != 0) StartCoroutine(Rolling());
-                //ySpeed = 0;
-                //vInput = 0;
-                //hInput = 0;
-                _speed = 0;
+            if (velocity.magnitude != 0) StartCoroutine(Rolling());
             }
 
         AnimateWalkRun(new Vector3(hInput, vInput, 0));
