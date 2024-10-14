@@ -77,12 +77,14 @@ public class playerController : MonoBehaviour
 
         //Jump
         Jump();
-        }
+
         //Rolling
             if (Input.GetKeyDown(KeyCode.E))
             {
-            if (velocity.magnitude != 0) StartCoroutine(Rolling());
+                if (velocity.magnitude != 0) StartCoroutine(Rolling());
             }
+        }
+
 
         AnimateWalkRun(new Vector3(hInput, vInput, 0));
         AnimateJump();
