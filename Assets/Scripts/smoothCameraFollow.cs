@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class smoothCameraFollow : MonoBehaviour
+public class SmoothCameraFollow : MonoBehaviour
 {
     private Vector3 _offset;
 
@@ -17,14 +17,14 @@ public class smoothCameraFollow : MonoBehaviour
 
     private void Awake()
     {
-        _offset = transform.position - target.position;
+        //_offset = transform.position - target.position;
     }
 
     private void LateUpdate()
     {
-        Vector3 targetPosition = target.position + _offset;
+        Vector3 targetPosition = target.position;
 
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _currentVelocity, smoothTime);
+        //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _currentVelocity, smoothTime);
         
         transform.position = new Vector3(Mathf.Clamp(targetPosition.x, minValue.x, maxValue.x),Mathf.Clamp(targetPosition.y, minValue.y, maxValue.y),Mathf.Clamp(targetPosition.z, minValue.z, maxValue.z));
     }

@@ -9,7 +9,7 @@ public class rolling : MonoBehaviour
     public Transform _orientation;
     public Transform _camera;
     private Rigidbody rb;
-    private playerController pm;
+    private PlayerController pm;
 
     public float rollForce;
     public float rollUpawardForce;
@@ -22,7 +22,7 @@ public class rolling : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pm = GetComponent<playerController>();
+        pm = GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
     }
 

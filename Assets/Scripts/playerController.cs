@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float _jumpSpeed = 3f;
