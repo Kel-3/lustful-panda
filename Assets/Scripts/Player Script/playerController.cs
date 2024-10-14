@@ -2,27 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Xml.Serialization;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
     [SerializeField]
     private float _jumpSpeed = 3f;
-
     [SerializeField]
     private float _walkSpeed = 3f;
-
     [SerializeField]
     private float _runSpeed = 6f;
-
     [SerializeField]
     private float _rotationSpeed = 90f;
+    [SerializeField]
+    AnimationCurve _rollCurve;
 
     private CharacterController characterController;
-
     private float ySpeed;
-
     private bool _isRun;
+
+    private bool isRooling;
+    private float _rollTimer;
+    private float _speed;
 
 
     public CharacterAnimatorController CharacterAnimatorController;
@@ -33,6 +35,9 @@ public class playerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         CharacterAnimatorController = GetComponent<CharacterAnimatorController>();
+
+        Keyframe roll_lastFrame = _rollCurve[_rollCurve.length - 1];
+        _rollTimer = roll_lastFrame.time;
     }
 
     // Update is called once per frame
@@ -41,67 +46,85 @@ public class playerController : MonoBehaviour
         float hInput = Input.GetAxis("Horizontal");
         float vInput = Input.GetAxis("Vertical");
 
-        float speed = _walkSpeed;
-
-        //Vector3 rotation = new Vector3(0, hInput);
-        
-
-        //Run
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            speed = _runSpeed;
-    
-            _isRun = true;
-        }
+        _speed = _walkSpeed;
 
         Vector3 move = new Vector3(hInput, 0, vInput);
-        float magnitude = Mathf.Clamp01(move.magnitude) * speed;
+
+        //Run
+        Running();
+
+        float magnitude = Mathf.Clamp01(move.magnitude) * _speed;
         move.Normalize();
 
         ySpeed += Physics.gravity.y * Time.deltaTime;
 
         //Jump
-        if (characterController.isGrounded)
-        {
-            jump();
-        }
+        Jump();
 
         Vector3 velocity = move * magnitude;
-
         velocity.y = ySpeed;
-
-
         characterController.Move(velocity * Time.deltaTime);
 
         if (move != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
-
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, _rotationSpeed * Time.deltaTime);
+        }
+
+        //Rolling
+        if (Input.GetKey(KeyCode.E))
+        {
+            if (velocity.magnitude != 0) StartCoroutine(Rolling());
+            //ySpeed = 0;
+            vInput = 0;
+            hInput = 0;
+            _speed = 0;
         }
 
         AnimateWalkRun(new Vector3(hInput, vInput, 0));
         AnimateJump();
 
-        if(Input.GetKey(KeyCode.E))
-        {
-            ySpeed = 0;
-            vInput = 0;
-            hInput = 0;
-            speed = 0;
-        }
 
         //transform.Rotate(rotation * Time.deltaTime * _rotationSpeed);
     }
 
-    private void jump()
+    IEnumerator Rolling()
     {
-        ySpeed = 0f;
+        isRooling = true;
+        float timer = 0;
+        while (timer < _rollTimer) {
+            float _rollSpeed = _rollCurve.Evaluate(timer);
+            Vector3 dir = (transform.forward * _rollSpeed);
+            characterController.Move(dir * Time.deltaTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+    }
 
-        if (Input.GetKey(KeyCode.Space))
+    private void Running()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            ySpeed = _jumpSpeed;
-            _isJump = true;
+            _speed = _runSpeed;
+            _isRun = true;
+        }
+    }
+
+    private void Movement()
+    {
+
+    }
+
+    private void Jump()
+    {
+        if (characterController.isGrounded)
+        {
+        ySpeed = 0f;
+            if (Input.GetKey(KeyCode.Space))
+            {
+                ySpeed = _jumpSpeed;
+                _isJump = true;
+            }
         }
     }
 
