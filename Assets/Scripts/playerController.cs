@@ -22,9 +22,17 @@ public class playerController : MonoBehaviour
 
     private float ySpeed;
 
+    private bool _isRun;
+
+
+    public CharacterAnimatorController CharacterAnimatorController;
+    [SerializeField] private float _animeSmoothSpeed = 2;
+    [SerializeField] private float _animHorizontal, _animVertical;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        CharacterAnimatorController = GetComponent<CharacterAnimatorController>();
     }
 
     // Update is called once per frame
@@ -36,11 +44,14 @@ public class playerController : MonoBehaviour
         float speed = _walkSpeed;
 
         //Vector3 rotation = new Vector3(0, hInput);
+        
 
         //Run
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = _runSpeed;
+    
+            _isRun = true;
         }
 
         Vector3 move = new Vector3(hInput, 0, vInput);
@@ -69,6 +80,16 @@ public class playerController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, _rotationSpeed * Time.deltaTime);
         }
 
+        AnimateWalkRun(new Vector3(hInput, vInput, 0));
+        AnimateJump();
+
+        if(Input.GetKey(KeyCode.E))
+        {
+            ySpeed = 0;
+            vInput = 0;
+            hInput = 0;
+            speed = 0;
+        }
 
         //transform.Rotate(rotation * Time.deltaTime * _rotationSpeed);
     }
@@ -80,6 +101,55 @@ public class playerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             ySpeed = _jumpSpeed;
+            _isJump = true;
         }
     }
+
+#region animation
+    private JumpState _currentState = JumpState.Grounded;
+    private bool _isJump = false;
+
+    private void AnimateJump()
+    {
+        switch (_currentState)
+        {
+            case JumpState.Grounded:
+                if(_isJump == true)
+                {
+                    _currentState = JumpState.Jump;
+                }
+                break;
+            case JumpState.Jump:
+                CharacterAnimatorController.Jump();
+                _currentState = JumpState.Falling;
+                Debug.Log("jump");
+                break;
+            case JumpState.Falling:
+                CharacterAnimatorController.Land();
+                _isJump = false;
+                _currentState = JumpState.Grounded;
+                Debug.Log("tidak jump");
+                break;
+        }
+    }
+
+    private void AnimateWalkRun(Vector3 input) 
+    {
+        float multiplier = Input.GetKey(KeyCode.LeftShift) ? 3 : 1.5f;
+        float targetHorizontal = input.x * multiplier;
+        float targetVertical = input.y * multiplier;
+
+        _animHorizontal = Mathf.Lerp(_animHorizontal, targetHorizontal, Time.deltaTime * _animeSmoothSpeed);
+        _animVertical = Mathf.Lerp(_animVertical, targetVertical, Time.deltaTime * _animeSmoothSpeed);
+
+        CharacterAnimatorController.WalkSpeed(_animHorizontal, _animVertical);
+    }
+#endregion
+}
+
+public enum JumpState
+{
+    Grounded,
+    Jump,
+    Falling
 }
