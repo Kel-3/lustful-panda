@@ -539,6 +539,12 @@ MonoBehaviour:
   _walkSpeed: 3
   _runSpeed: 6
   _rotationSpeed: 200
+  _rollCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   CharacterAnimatorController: {fileID: 6837301530960731954}
   _animeSmoothSpeed: 2
   _animHorizontal: 0
