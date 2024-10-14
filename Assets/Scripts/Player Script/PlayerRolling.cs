@@ -11,7 +11,7 @@ public class PlayerRolling : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKey(KeyCode.Q))
+        if(Input.GetKey(KeyCode.E))
         {
             _characterAnimatorController.Roll();
         }
