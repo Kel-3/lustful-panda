@@ -25,6 +25,10 @@ public class playerController : MonoBehaviour
     private bool isRooling;
     private float _rollTimer;
     private float _speed;
+    private float hInput;
+    private float vInput;
+    private Vector3 move;
+    private Vector3 velocity;
 
 
     public CharacterAnimatorController CharacterAnimatorController;
@@ -43,12 +47,14 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float hInput = Input.GetAxis("Horizontal");
-        float vInput = Input.GetAxis("Vertical");
+        if (!isRooling)
+        {
+        hInput = Input.GetAxis("Horizontal");
+        vInput = Input.GetAxis("Vertical");
 
         _speed = _walkSpeed;
 
-        Vector3 move = new Vector3(hInput, 0, vInput);
+        move = new Vector3(hInput, 0, vInput);
 
         //Run
         Running();
@@ -58,28 +64,27 @@ public class playerController : MonoBehaviour
 
         ySpeed += Physics.gravity.y * Time.deltaTime;
 
-        //Jump
-        Jump();
 
-        Vector3 velocity = move * magnitude;
+        velocity = move * magnitude;
         velocity.y = ySpeed;
-        characterController.Move(velocity * Time.deltaTime);
 
+            characterController.Move(velocity * Time.deltaTime);
         if (move != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, _rotationSpeed * Time.deltaTime);
         }
 
+        //Jump
+        Jump();
+
         //Rolling
-        if (Input.GetKey(KeyCode.E))
-        {
-            if (velocity.magnitude != 0) StartCoroutine(Rolling());
-            //ySpeed = 0;
-            vInput = 0;
-            hInput = 0;
-            _speed = 0;
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (velocity.magnitude != 0) StartCoroutine(Rolling());
+            }
         }
+
 
         AnimateWalkRun(new Vector3(hInput, vInput, 0));
         AnimateJump();
@@ -99,6 +104,7 @@ public class playerController : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        isRooling = false;
     }
 
     private void Running()
@@ -108,11 +114,6 @@ public class playerController : MonoBehaviour
             _speed = _runSpeed;
             _isRun = true;
         }
-    }
-
-    private void Movement()
-    {
-
     }
 
     private void Jump()
