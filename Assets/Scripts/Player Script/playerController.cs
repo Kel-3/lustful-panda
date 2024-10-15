@@ -80,7 +80,7 @@ public class playerController : MonoBehaviour
         Jump();
 
         //Rolling
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (velocity.magnitude != 0) StartCoroutine(Rolling());
             }
