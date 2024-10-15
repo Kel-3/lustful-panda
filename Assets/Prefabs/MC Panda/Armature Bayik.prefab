@@ -266,7 +266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3aa9dd0013b3ab240a5bb23c90196804, type: 3}
       propertyPath: m_Name
-      value: Armature Bayik 1
+      value: Armature Bayik
       objectReference: {fileID: 0}
     - target: {fileID: 1653172800746090488, guid: 3aa9dd0013b3ab240a5bb23c90196804, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -432,6 +432,9 @@ PrefabInstance:
       addedObject: {fileID: 6789960049720856552}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3aa9dd0013b3ab240a5bb23c90196804, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2015671233365272357}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3aa9dd0013b3ab240a5bb23c90196804, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2247973546842000051}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3aa9dd0013b3ab240a5bb23c90196804, type: 3}
       insertIndex: -1
@@ -476,6 +479,27 @@ Rigidbody:
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &6789960049720856552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3543964603571793570}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.4125198}
+  m_Center: {x: -2.0792128e-16, y: 0.5, z: -0.045881152}
+--- !u!65 &2015671233365272357
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -49,6 +49,7 @@ public class playerController : MonoBehaviour
     {
         if (!isRooling)
         {
+        gameObject.tag = "PandaMC";
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
 
@@ -96,6 +97,7 @@ public class playerController : MonoBehaviour
     IEnumerator Rolling()
     {
         isRooling = true;
+        gameObject.tag = "PandaRolling";
         float timer = 0;
         while (timer < _rollTimer) {
             float _rollSpeed = _rollCurve.Evaluate(timer);
