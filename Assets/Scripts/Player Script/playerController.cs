@@ -58,7 +58,15 @@ public class playerController : MonoBehaviour
         move = new Vector3(hInput, 0, vInput);
 
         //Run
-        Running();
+        //Running();
+
+        _isRun = Input.GetKey(KeyCode.LeftShift);
+        _speed = _isRun ? _runSpeed : _walkSpeed; 
+        
+        if (!Input.GetKey(KeyCode.LeftShift) && _isRun)
+        {
+            _isRun = false;
+        }
 
         float magnitude = Mathf.Clamp01(move.magnitude) * _speed;
         move.Normalize();
@@ -69,9 +77,19 @@ public class playerController : MonoBehaviour
         velocity = move * magnitude;
         velocity.y = ySpeed;
 
-            characterController.Move(velocity * Time.deltaTime);
+        characterController.Move(velocity * Time.deltaTime);
         if (move != Vector3.zero)
         {
+            Vector3 desiredDirection = new Vector3(hInput, 0, vInput);
+            if (desiredDirection.magnitude > 0) 
+            {
+                desiredDirection.Normalize();
+            }
+            float angleDiff = Vector3.Angle(transform.forward, desiredDirection);
+
+            float speedModifier = Mathf.Lerp(1f, 0.1f, Mathf.InverseLerp(45f, 135f, angleDiff));
+            _speed *= speedModifier;
+
             Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, _rotationSpeed * Time.deltaTime);
         }
@@ -85,7 +103,6 @@ public class playerController : MonoBehaviour
                 if (velocity.magnitude != 0) StartCoroutine(Rolling());
             }
         }
-
 
         AnimateWalkRun(new Vector3(hInput, vInput, 0));
         AnimateJump();
@@ -122,7 +139,7 @@ public class playerController : MonoBehaviour
     {
         if (characterController.isGrounded)
         {
-        ySpeed = 0f;
+            ySpeed = 0f;
             if (Input.GetKey(KeyCode.Space))
             {
                 ySpeed = _jumpSpeed;
@@ -161,7 +178,7 @@ public class playerController : MonoBehaviour
 
     private void AnimateWalkRun(Vector3 input) 
     {
-        float multiplier = Input.GetKey(KeyCode.LeftShift) ? 3 : 1.5f;
+        float multiplier = Input.GetKey(KeyCode.LeftShift) ? 3 : 2f;
         float targetHorizontal = input.x * multiplier;
         float targetVertical = input.y * multiplier;
 

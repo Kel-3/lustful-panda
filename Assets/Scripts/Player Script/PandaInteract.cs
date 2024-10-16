@@ -36,6 +36,7 @@ public class PandaInteractMultiple : MonoBehaviour
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         if (rb != null)
         {
+            rb.isKinematic = false;
             // Dorongan ke depan relatif terhadap posisi panda
             Vector3 pushDirection = (obj.transform.position - panda.position).normalized;
             rb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
