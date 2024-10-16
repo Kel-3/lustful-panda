@@ -834,7 +834,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7378474372775956094}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97664f77090f3df47a5926aa141f216e, type: 3}
   m_Name: 
@@ -881,8 +881,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.039996833
     - serializedVersion: 3
-      time: 1.4088131
-      value: 2.6082952
+      time: 1.4042355
+      value: 2.0819166
       inSlope: -0.0079276785
       outSlope: -0.0079276785
       tangentMode: 0

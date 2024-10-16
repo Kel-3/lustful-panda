@@ -108,11 +108,12 @@ public class playerController : MonoBehaviour
 
             //Rolling
             if (!_isJump) { 
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                if (velocity.magnitude != 0) StartCoroutine(Rolling());
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    if (velocity.magnitude != 0) StartCoroutine(Rolling());
+                }
             }
-            }
+
         }
 
         AnimateWalkRun(new Vector3(hInput, vInput, 0));
@@ -126,6 +127,7 @@ public class playerController : MonoBehaviour
     {
         isRooling = true;
         gameObject.tag = "PandaRolling";
+        CharacterAnimatorController.Roll();
         float timer = 0;
         while (timer < _rollTimer) {
             float _rollSpeed = _rollCurve.Evaluate(timer);
@@ -134,6 +136,7 @@ public class playerController : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        CharacterAnimatorController.StopRoll();
         isRooling = false;
     }
 
@@ -162,7 +165,7 @@ public class playerController : MonoBehaviour
     IEnumerator Jumping()
     {
         ySpeed = _jumpSpeed;
-        while (ySpeed !!= 0) {
+        while (ySpeed != 0) {
             _isJump = true;
 
             yield return null;
