@@ -32,4 +32,9 @@ public class CharacterAnimatorController : MonoBehaviour
         _animator.SetBool("isRolling", false);
     }
 
+    public void Turn()
+    {
+        _animator.CrossFade("Turn", 0.25f);
+    }
+
 }

@@ -268,6 +268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Armature Bayik
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3aa9dd0013b3ab240a5bb23c90196804, type: 3}
+      propertyPath: m_TagString
+      value: PandaMC
+      objectReference: {fileID: 0}
     - target: {fileID: 1653172800746090488, guid: 3aa9dd0013b3ab240a5bb23c90196804, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -85.9816
@@ -586,7 +590,7 @@ MonoBehaviour:
   _jumpSpeed: 3
   _walkSpeed: 3
   _runSpeed: 6
-  _rotationSpeed: 200
+  _rotationSpeed: 250
   _rollCurve:
     serializedVersion: 2
     m_Curve:
@@ -600,21 +604,22 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.039996833
     - serializedVersion: 3
-      time: 1.4003022
-      value: 2.6085005
-      inSlope: 0.9724347
-      outSlope: 0.9724347
+      time: 1.0550071
+      value: 1.3378415
+      inSlope: -0.0079276785
+      outSlope: -0.0079276785
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.0863562
+      inWeight: 0.31968793
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   CharacterAnimatorController: {fileID: 3592198569510187659}
-  _animeSmoothSpeed: 2
+  _animeSmoothSpeed: 10
   _animHorizontal: 0
   _animVertical: 0
+  _isJump: 0
 --- !u!95 &7819741538601791074 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 3aa9dd0013b3ab240a5bb23c90196804, type: 3}
