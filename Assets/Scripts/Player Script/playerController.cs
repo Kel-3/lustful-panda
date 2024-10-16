@@ -94,13 +94,24 @@ public class playerController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, _rotationSpeed * Time.deltaTime);
         }
 
-        //Jump
-        Jump();
+            //Jump
+            //Jump();
 
-        //Rolling
+            if (characterController.isGrounded)
+            {
+                ySpeed = 0;
+                if (Input.GetKey(KeyCode.Space)) 
+                { 
+                    StartCoroutine(Jumping());
+                }
+            }
+
+            //Rolling
+            if (!_isJump) { 
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (velocity.magnitude != 0) StartCoroutine(Rolling());
+            }
             }
         }
 
@@ -146,6 +157,17 @@ public class playerController : MonoBehaviour
                 _isJump = true;
             }
         }
+    }
+
+    IEnumerator Jumping()
+    {
+        ySpeed = _jumpSpeed;
+        while (ySpeed !!= 0) {
+            _isJump = true;
+
+            yield return null;
+        }
+        _isJump = false;
     }
 
 #region animation
