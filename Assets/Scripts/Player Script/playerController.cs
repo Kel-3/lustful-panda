@@ -57,9 +57,7 @@ public class playerController : MonoBehaviour
 
         move = new Vector3(hInput, 0, vInput);
 
-        //Run
-        //Running();
-
+        //walk & run
         _isRun = Input.GetKey(KeyCode.LeftShift);
         _speed = _isRun ? _runSpeed : _walkSpeed; 
         
@@ -95,8 +93,6 @@ public class playerController : MonoBehaviour
         }
 
             //Jump
-            //Jump();
-
             if (characterController.isGrounded)
             {
                 ySpeed = 0;
@@ -123,6 +119,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator Rolling()
     {
+        //selagi jump dia gak bisa roll
         if (_isJump == true) 
         { 
             yield return null;
@@ -142,33 +139,10 @@ public class playerController : MonoBehaviour
         CharacterAnimatorController.StopRoll();
         isRooling = false;
     }
-
-    private void Running()
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            _speed = _runSpeed;
-            _isRun = true;
-        }
-    }
-
-    private void Jump()
-    {
-        if (characterController.isGrounded)
-        {
-            ySpeed = 0f;
-            if (Input.GetKey(KeyCode.Space))
-            {
-                //ySpeed = _jumpSpeed;
-                _isJump = true;
-                StartCoroutine(DelayedJump());
-            }
-        }
-    }
-
     IEnumerator Jumping()
     {
         _isJump = true;
+        //pake delay, biar animasi jump jalan dulu sebelum character jump 
         yield return new WaitForSeconds(_jumpDelayDuration);
         
         ySpeed = _jumpSpeed;
@@ -185,12 +159,7 @@ public class playerController : MonoBehaviour
     private bool _isJump = false;
     [SerializeField] private float _jumpDelayDuration = 2f;
 
-    private IEnumerator DelayedJump()
-    {
-        yield return new WaitForSeconds(_jumpDelayDuration);
-        ySpeed = _jumpSpeed;
-    }
-
+    //animasi jump
     private void AnimateJump()
     {
         switch (_currentState)
@@ -213,6 +182,7 @@ public class playerController : MonoBehaviour
         }
     }
 
+    //animasi walk & run
     private void AnimateWalkRun(Vector3 input) 
     {
         float multiplier = Input.GetKey(KeyCode.LeftShift) ? 3 : 2f;
