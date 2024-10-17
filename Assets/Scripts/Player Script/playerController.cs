@@ -57,9 +57,7 @@ public class playerController : MonoBehaviour
 
         move = new Vector3(hInput, 0, vInput);
 
-        //Run
-        //Running();
-
+        //walk & run
         _isRun = Input.GetKey(KeyCode.LeftShift);
         _speed = _isRun ? _runSpeed : _walkSpeed; 
         
@@ -95,14 +93,13 @@ public class playerController : MonoBehaviour
         }
 
             //Jump
-            //Jump();
-
             if (characterController.isGrounded)
             {
                 ySpeed = 0;
                 if (Input.GetKey(KeyCode.Space)) 
                 { 
                     StartCoroutine(Jumping());
+                    _currentState = JumpState.Jump;
                 }
             }
 
@@ -118,13 +115,16 @@ public class playerController : MonoBehaviour
 
         AnimateWalkRun(new Vector3(hInput, vInput, 0));
         AnimateJump();
-
-
-        //transform.Rotate(rotation * Time.deltaTime * _rotationSpeed);
     }
 
     IEnumerator Rolling()
     {
+        //selagi jump dia gak bisa roll
+        if (_isJump == true) 
+        { 
+            yield return null;
+        }
+
         isRooling = true;
         gameObject.tag = "PandaRolling";
         CharacterAnimatorController.Roll();
@@ -139,31 +139,12 @@ public class playerController : MonoBehaviour
         CharacterAnimatorController.StopRoll();
         isRooling = false;
     }
-
-    private void Running()
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            _speed = _runSpeed;
-            _isRun = true;
-        }
-    }
-
-    private void Jump()
-    {
-        if (characterController.isGrounded)
-        {
-            ySpeed = 0f;
-            if (Input.GetKey(KeyCode.Space))
-            {
-                ySpeed = _jumpSpeed;
-                _isJump = true;
-            }
-        }
-    }
-
     IEnumerator Jumping()
     {
+        _isJump = true;
+        //pake delay, biar animasi jump jalan dulu sebelum character jump 
+        yield return new WaitForSeconds(_jumpDelayDuration);
+        
         ySpeed = _jumpSpeed;
         while (ySpeed != 0) {
             _isJump = true;
@@ -176,7 +157,9 @@ public class playerController : MonoBehaviour
 #region animation
     private JumpState _currentState = JumpState.Grounded;
     private bool _isJump = false;
+    [SerializeField] private float _jumpDelayDuration = 2f;
 
+    //animasi jump
     private void AnimateJump()
     {
         switch (_currentState)
@@ -185,22 +168,21 @@ public class playerController : MonoBehaviour
                 if(_isJump == true)
                 {
                     _currentState = JumpState.Jump;
+                    CharacterAnimatorController.Jump();
                 }
                 break;
             case JumpState.Jump:
                 CharacterAnimatorController.Jump();
                 _currentState = JumpState.Falling;
-                Debug.Log("jump");
                 break;
             case JumpState.Falling:
                 CharacterAnimatorController.Land();
-                _isJump = false;
                 _currentState = JumpState.Grounded;
-                Debug.Log("tidak jump");
                 break;
         }
     }
 
+    //animasi walk & run
     private void AnimateWalkRun(Vector3 input) 
     {
         float multiplier = Input.GetKey(KeyCode.LeftShift) ? 3 : 2f;
