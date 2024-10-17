@@ -103,6 +103,7 @@ public class playerController : MonoBehaviour
                 if (Input.GetKey(KeyCode.Space)) 
                 { 
                     StartCoroutine(Jumping());
+                    _currentState = JumpState.Jump;
                 }
             }
 
@@ -118,13 +119,15 @@ public class playerController : MonoBehaviour
 
         AnimateWalkRun(new Vector3(hInput, vInput, 0));
         AnimateJump();
-
-
-        //transform.Rotate(rotation * Time.deltaTime * _rotationSpeed);
     }
 
     IEnumerator Rolling()
     {
+        if (_isJump == true) 
+        { 
+            yield return null;
+        }
+
         isRooling = true;
         gameObject.tag = "PandaRolling";
         CharacterAnimatorController.Roll();
@@ -165,6 +168,9 @@ public class playerController : MonoBehaviour
 
     IEnumerator Jumping()
     {
+        _isJump = true;
+        yield return new WaitForSeconds(_jumpDelayDuration);
+        
         ySpeed = _jumpSpeed;
         while (ySpeed != 0) {
             _isJump = true;
@@ -197,14 +203,12 @@ public class playerController : MonoBehaviour
                 }
                 break;
             case JumpState.Jump:
+                CharacterAnimatorController.Jump();
                 _currentState = JumpState.Falling;
-                Debug.Log("jump");
                 break;
             case JumpState.Falling:
                 CharacterAnimatorController.Land();
-                _isJump = false;
                 _currentState = JumpState.Grounded;
-                Debug.Log("tidak jump");
                 break;
         }
     }
