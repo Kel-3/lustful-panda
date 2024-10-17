@@ -94,14 +94,26 @@ public class playerController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, _rotationSpeed * Time.deltaTime);
         }
 
-        //Jump
-        Jump();
+            //Jump
+            //Jump();
 
-        //Rolling
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (characterController.isGrounded)
             {
-                if (velocity.magnitude != 0) StartCoroutine(Rolling());
+                ySpeed = 0;
+                if (Input.GetKey(KeyCode.Space)) 
+                { 
+                    StartCoroutine(Jumping());
+                }
             }
+
+            //Rolling
+            if (!_isJump) { 
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    if (velocity.magnitude != 0) StartCoroutine(Rolling());
+                }
+            }
+
         }
 
         AnimateWalkRun(new Vector3(hInput, vInput, 0));
@@ -115,6 +127,7 @@ public class playerController : MonoBehaviour
     {
         isRooling = true;
         gameObject.tag = "PandaRolling";
+        CharacterAnimatorController.Roll();
         float timer = 0;
         while (timer < _rollTimer) {
             float _rollSpeed = _rollCurve.Evaluate(timer);
@@ -123,6 +136,7 @@ public class playerController : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        CharacterAnimatorController.StopRoll();
         isRooling = false;
     }
 
@@ -147,6 +161,17 @@ public class playerController : MonoBehaviour
                 StartCoroutine(DelayedJump());
             }
         }
+    }
+
+    IEnumerator Jumping()
+    {
+        ySpeed = _jumpSpeed;
+        while (ySpeed != 0) {
+            _isJump = true;
+
+            yield return null;
+        }
+        _isJump = false;
     }
 
 #region animation
