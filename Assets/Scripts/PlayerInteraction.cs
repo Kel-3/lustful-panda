@@ -43,7 +43,7 @@ public class PlayerInteraction : MonoBehaviour
         if (!hasGivenQuest)
         {
             
-            Quest newQuest = new Quest("Temukan Kunci", "Find and collect the mysterious key.", "Kunci");
+            Quest newQuest = new Quest("Temukan Kunci", "Temukan kunci untuk membuka pintu", "Kunci");
             QuestManager.instance.AddQuest(newQuest);
             hasGivenQuest = true;  
         }

@@ -24,7 +24,7 @@ public class QuestManager : MonoBehaviour
     public void AddQuest(Quest newQuest)
     {
         activeQuests.Add(newQuest);
-        Debug.Log("Quest Added: " + newQuest.questName);
+        Debug.Log("Quest: " + newQuest.questName);
     }
 
     
@@ -35,7 +35,7 @@ public class QuestManager : MonoBehaviour
             if (quest.targetItem == itemName && !quest.isCompleted)
             {
                 quest.CompleteQuest();
-                Debug.Log("Quest Completed: " + "Temukan Pintu Untuk Membukanya");
+                Debug.Log("Quest Selesai: " + "Temukan Pintu Untuk Membukanya");
             }
         }
     }
