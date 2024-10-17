@@ -619,7 +619,7 @@ MonoBehaviour:
   _animeSmoothSpeed: 10
   _animHorizontal: 0
   _animVertical: 0
-  _isJump: 0
+  _jumpDelayDuration: 0.2
 --- !u!95 &7819741538601791074 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 3aa9dd0013b3ab240a5bb23c90196804, type: 3}

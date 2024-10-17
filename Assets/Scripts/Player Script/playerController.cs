@@ -142,8 +142,9 @@ public class playerController : MonoBehaviour
             ySpeed = 0f;
             if (Input.GetKey(KeyCode.Space))
             {
-                ySpeed = _jumpSpeed;
+                //ySpeed = _jumpSpeed;
                 _isJump = true;
+                StartCoroutine(DelayedJump());
             }
         }
     }
@@ -151,6 +152,13 @@ public class playerController : MonoBehaviour
 #region animation
     private JumpState _currentState = JumpState.Grounded;
     private bool _isJump = false;
+    [SerializeField] private float _jumpDelayDuration = 2f;
+
+    private IEnumerator DelayedJump()
+    {
+        yield return new WaitForSeconds(_jumpDelayDuration);
+        ySpeed = _jumpSpeed;
+    }
 
     private void AnimateJump()
     {
@@ -160,10 +168,10 @@ public class playerController : MonoBehaviour
                 if(_isJump == true)
                 {
                     _currentState = JumpState.Jump;
+                    CharacterAnimatorController.Jump();
                 }
                 break;
             case JumpState.Jump:
-                CharacterAnimatorController.Jump();
                 _currentState = JumpState.Falling;
                 Debug.Log("jump");
                 break;
