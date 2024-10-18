@@ -551,8 +551,9 @@ MonoBehaviour:
   pickupRadius: 2
   player: {fileID: 348231412}
   obstacleObject: {fileID: 0}
-  grabOffsetPlayer: {x: 0, y: 1, z: 0}
-  dropOffsetPlayer: {x: 0, y: -1, z: 0.5}
+  grabOffsetPlayer: {x: 0, y: 0.2, z: 0.5}
+  dropOffsetPlayer: {x: 0, y: -1, z: 1.2}
+  yRotatePickup: 0
 --- !u!1001 &741495353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -917,6 +918,18 @@ PrefabInstance:
       propertyPath: obstacleObject
       value: 
       objectReference: {fileID: 1792133041}
+    - target: {fileID: 846098696514987179, guid: 7a0442ee2a34e7d43a6e08bc8616168b, type: 3}
+      propertyPath: dropOffsetPlayer.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 846098696514987179, guid: 7a0442ee2a34e7d43a6e08bc8616168b, type: 3}
+      propertyPath: grabOffsetPlayer.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 846098696514987179, guid: 7a0442ee2a34e7d43a6e08bc8616168b, type: 3}
+      propertyPath: grabOffsetPlayer.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3672592019407111999, guid: 7a0442ee2a34e7d43a6e08bc8616168b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.05

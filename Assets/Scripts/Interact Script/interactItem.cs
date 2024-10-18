@@ -26,40 +26,47 @@ public class interactItem : MonoBehaviour
         if (distance <= pickupRadius)
         {
             if (obstacleObject != null)
-        {
-            Debug.Log("belum bisa interact");
-            return; // Keluar dari fungsi Update jika panda masih ada
-        }
-            else{
-                canPickup = true;
-            Debug.Log("ambil barang = E");
+            {
+                Debug.Log("belum bisa interact");
+                return; // Keluar dari fungsi Update jika obstacleObject masih ada
             }
-            
+            else
+            {
+                canPickup = true;
+                Debug.Log("ambil barang = E");
+            }
         }
-        else{
+        else
+        {
             canPickup = false;
         }
 
         // Jika berada dalam radius dan tombol "E" ditekan, ambil objek
         if (canPickup && Input.GetKeyDown(KeyCode.E))
         {
-            Pickup();  // Fungsi untuk mengambil objek
+            if (!isCarryingItem)
+            {
+                Pickup();
+            }
         }
 
         // Jika pemain menekan tombol "R", drop objek
         if (isCarryingItem && Input.GetKeyDown(KeyCode.R))
         {
-            Drop();  // Fungsi untuk drop objek
+            Drop();
         }
     }
 
     void Pickup()
     {
         Debug.Log("membawa barang");
-        // Kamu bisa menambahkan logika lain di sini, seperti menambahkannya ke inventory
-        
-        // Memindahkan objek ke dekat karakter dengan offset
-        transform.position = player.transform.position + grabOffsetPlayer;
+
+        // Memindahkan objek ke dekat karakter dengan arah yang sesuai (menggunakan rotasi karakter)
+        transform.position = player.transform.TransformPoint(grabOffsetPlayer);
+
+        // Reset rotasi objek hanya pada sumbu Y 
+        float yPlayer = player.transform.eulerAngles.y;
+        transform.rotation = Quaternion.Euler(0, yPlayer, 0);
 
         // Menjadikan objek anak dari pemain, sehingga mengikuti pemain jika diperlukan
         transform.SetParent(player.transform);
@@ -68,11 +75,16 @@ public class interactItem : MonoBehaviour
         canPickup = false;      // Tidak bisa mengambil objek lagi sampai dilepaskan
     }
 
+
     void Drop()
     {
         Debug.Log("barang dilepas");
-        // Memindahkan objek ke posisi pemain saat ini
-        transform.position = player.transform.position + dropOffsetPlayer;
+
+        // Memindahkan objek ke posisi pemain saat ini dengan arah yang sesuai (menggunakan rotasi karakter)
+        transform.position = player.transform.TransformPoint(dropOffsetPlayer);
+
+        // Reset rotasi objek hanya pada sumbu Y dan gunakan localRotation
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
 
         // Menghapus objek sebagai anak dari pemain (tidak mengikuti pemain lagi)
         transform.SetParent(null);
