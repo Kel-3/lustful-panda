@@ -32,9 +32,32 @@ public class CharacterAnimatorController : MonoBehaviour
         _animator.SetBool("isRolling", false);
     }
 
-    public void Turn()
+    public void Sneak()
     {
-        _animator.CrossFade("Turn", 0.25f);
+        _animator.SetBool("isSneak", true);
     }
 
+    public void Rest()
+    {
+        _animator.SetBool("Action", true);
+        _animator.SetBool("isRest", true);
+    }
+
+    public void UpRest()
+    {
+        _animator.SetBool("isRest", false);
+        _animator.SetBool("Action", false);
+    }
+
+    public void Sit()
+    {
+        _animator.SetBool("Action", true);
+        _animator.SetBool("isSit", true);
+    }
+
+    public void UpSit()
+    {
+        _animator.SetBool("isSit", false);
+        _animator.SetBool("Action", false);
+    }
 }

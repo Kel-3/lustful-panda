@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField]
     private float _jumpSpeed = 3f;
     [SerializeField]
@@ -30,10 +31,16 @@ public class playerController : MonoBehaviour
     private Vector3 move;
     private Vector3 velocity;
 
-
+    [Header("Animasi")]
     public CharacterAnimatorController CharacterAnimatorController;
+    // public AnimationLookAt AnimationLookAt;
     [SerializeField] private float _animeSmoothSpeed = 2;
     [SerializeField] private float _animHorizontal, _animVertical;
+    private JumpState _currentState = JumpState.Grounded;
+    private bool _isJump = false;
+    [SerializeField] private float _jumpDelayDuration = 2f;
+    private bool _isTurnRight;
+
 
     void Start()
     {
@@ -88,8 +95,11 @@ public class playerController : MonoBehaviour
             float speedModifier = Mathf.Lerp(1f, 0.1f, Mathf.InverseLerp(45f, 135f, angleDiff));
             _speed *= speedModifier;
 
+            // Debug.Log(angleDiff);
+
             Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, _rotationSpeed * Time.deltaTime);
+          
         }
 
             //Jump
@@ -113,10 +123,19 @@ public class playerController : MonoBehaviour
 
         }
 
+        //animasi
         AnimateWalkRun(new Vector3(hInput, vInput, 0));
         AnimateJump();
+        AnimateRest();
+        AnimateSit();
+
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            StopAnimation();
+        }
     }
 
+    #region Rolling
     IEnumerator Rolling()
     {
         //selagi jump dia gak bisa roll
@@ -139,6 +158,10 @@ public class playerController : MonoBehaviour
         CharacterAnimatorController.StopRoll();
         isRooling = false;
     }
+
+    #endregion
+    
+    #region Jumping
     IEnumerator Jumping()
     {
         _isJump = true;
@@ -153,23 +176,15 @@ public class playerController : MonoBehaviour
         }
         _isJump = false;
     }
+    #endregion
 
-#region animation
-    private JumpState _currentState = JumpState.Grounded;
-    private bool _isJump = false;
-    [SerializeField] private float _jumpDelayDuration = 2f;
-
+    #region animation
     //animasi jump
     private void AnimateJump()
     {
         switch (_currentState)
         {
             case JumpState.Grounded:
-                if(_isJump == true)
-                {
-                    _currentState = JumpState.Jump;
-                    CharacterAnimatorController.Jump();
-                }
                 break;
             case JumpState.Jump:
                 CharacterAnimatorController.Jump();
@@ -193,6 +208,30 @@ public class playerController : MonoBehaviour
         _animVertical = Mathf.Lerp(_animVertical, targetVertical, Time.deltaTime * _animeSmoothSpeed);
 
         CharacterAnimatorController.WalkSpeed(_animHorizontal, _animVertical);
+    }
+
+    //animasi sit
+    private void AnimateSit()
+    {
+        if(Input.GetKeyDown(KeyCode.Y))
+        {
+            CharacterAnimatorController.Sit();
+        }
+    }
+
+    //animasi rest
+    private void AnimateRest()
+    {
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            CharacterAnimatorController.Rest();
+        }
+    }
+
+    private void StopAnimation()
+    {
+        CharacterAnimatorController.UpSit();
+        CharacterAnimatorController.UpRest();
     }
 #endregion
 }
