@@ -95,10 +95,9 @@ public class playerController : MonoBehaviour
             float speedModifier = Mathf.Lerp(1f, 0.1f, Mathf.InverseLerp(45f, 135f, angleDiff));
             _speed *= speedModifier;
 
-            // Debug.Log(angleDiff);
-
             Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, _rotationSpeed * Time.deltaTime);
+          
           
         }
 
@@ -232,6 +231,11 @@ public class playerController : MonoBehaviour
     {
         CharacterAnimatorController.UpSit();
         CharacterAnimatorController.UpRest();
+    }
+
+    public Vector3 PlayerControlMovement()
+    {
+        return move;
     }
 #endregion
 }
