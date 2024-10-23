@@ -25,6 +25,7 @@ public class QuestManager : MonoBehaviour
     {
         activeQuests.Add(newQuest);
         Debug.Log("Quest: " + newQuest.questName);
+        HintManager.instance.ShowHint(newQuest.questDescription);
     }
 
     
@@ -36,6 +37,7 @@ public class QuestManager : MonoBehaviour
             {
                 quest.CompleteQuest();
                 Debug.Log("Quest Selesai: " + "Temukan Pintu Untuk Membukanya");
+                HintManager.instance.ShowHint("Temukan pintu untuk membukanya.");
             }
         }
     }
