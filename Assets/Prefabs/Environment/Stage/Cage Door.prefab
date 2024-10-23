@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &514877426396171868
+--- !u!1 &1934438197561318904
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7285658821576347884}
-  - component: {fileID: 8072203256180608677}
-  - component: {fileID: 7792761506063316629}
+  - component: {fileID: 2211484019952434309}
+  - component: {fileID: 1529999466282733610}
+  - component: {fileID: 2224333067944443881}
   m_Layer: 0
   m_Name: Cage Door
   m_TagString: Untagged
@@ -18,34 +18,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7285658821576347884
+--- !u!4 &2211484019952434309
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514877426396171868}
+  m_GameObject: {fileID: 1934438197561318904}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7932845, z: -0, w: 0.60885125}
-  m_LocalPosition: {x: -15.658, y: -5.918, z: 1.529}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.13063873, z: -0, w: 0.9914301}
+  m_LocalPosition: {x: -0.896, y: 0.973, z: 3.235}
+  m_LocalScale: {x: 1, y: 0.97314084, z: 0.96234995}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6955336706669847879}
+  - {fileID: 6298957874342469715}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -104.987, z: 0}
---- !u!54 &8072203256180608677
+  m_LocalEulerAnglesHint: {x: 0, y: 15.013, z: 0}
+--- !u!54 &1529999466282733610
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514877426396171868}
+  m_GameObject: {fileID: 1934438197561318904}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: -0.1, z: 0}
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -55,31 +55,31 @@ Rigidbody:
     serializedVersion: 2
     m_Bits: 0
   m_ImplicitCom: 0
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_ImplicitTensor: 0
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 94
   m_CollisionDetection: 0
---- !u!114 &7792761506063316629
+--- !u!114 &2224333067944443881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514877426396171868}
+  m_GameObject: {fileID: 1934438197561318904}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d3d0e8d025f6c941af233a3e732bb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &7425565656314528428
+--- !u!1001 &5827901654089353144
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7285658821576347884}
+    m_TransformParent: {fileID: 2211484019952434309}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c5106730be670d248a5b78b5dd21a784, type: 3}
       propertyPath: m_RootOrder
@@ -103,7 +103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5106730be670d248a5b78b5dd21a784, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5106730be670d248a5b78b5dd21a784, type: 3}
       propertyPath: m_LocalPosition.z
@@ -151,28 +151,28 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c5106730be670d248a5b78b5dd21a784, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7433380023044520488}
+      addedObject: {fileID: 6367278676596338052}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c5106730be670d248a5b78b5dd21a784, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2091295143240648408}
+      addedObject: {fileID: 3312658657266410308}
   m_SourcePrefab: {fileID: 100100000, guid: c5106730be670d248a5b78b5dd21a784, type: 3}
---- !u!4 &6955336706669847879 stripped
+--- !u!4 &6298957874342469715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c5106730be670d248a5b78b5dd21a784, type: 3}
-  m_PrefabInstance: {fileID: 7425565656314528428}
+  m_PrefabInstance: {fileID: 5827901654089353144}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7768007107059318781 stripped
+--- !u!1 &6638785773105937129 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c5106730be670d248a5b78b5dd21a784, type: 3}
-  m_PrefabInstance: {fileID: 7425565656314528428}
+  m_PrefabInstance: {fileID: 5827901654089353144}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &7433380023044520488
+--- !u!64 &6367278676596338052
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7768007107059318781}
+  m_GameObject: {fileID: 6638785773105937129}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -188,13 +188,13 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1853871667212750230, guid: c5106730be670d248a5b78b5dd21a784, type: 3}
---- !u!65 &2091295143240648408
+--- !u!65 &3312658657266410308
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7768007107059318781}
+  m_GameObject: {fileID: 6638785773105937129}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -208,4 +208,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.91, y: 3.67, z: 0.10000046}
-  m_Center: {x: 1, y: 0, z: 0.00000014901164}
+  m_Center: {x: 1, y: 0, z: 0}

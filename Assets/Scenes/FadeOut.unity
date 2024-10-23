@@ -749,6 +749,10 @@ PrefabInstance:
       propertyPath: _jumpDelayDuration
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3226345437706168847, guid: 4e69d727b66b6754ea7300b064c66093, type: 3}
+      propertyPath: field of view
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 4220020989364764494, guid: 4e69d727b66b6754ea7300b064c66093, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
