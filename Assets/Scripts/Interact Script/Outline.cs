@@ -91,7 +91,7 @@ public class Outline : MonoBehaviour {
         needsUpdate = true;
     }
 
-    void OnEnable() {
+    public void OnEnable() {
         ApplyOutline(isOutlineActive);  // Terapkan outline saat objek diaktifkan
     }
 
@@ -109,7 +109,7 @@ public class Outline : MonoBehaviour {
         }
     }
 
-    void OnDisable() {
+    public void OnDisable() {
         ApplyOutline(false);  // Hapus outline ketika objek dinonaktifkan
     }
 

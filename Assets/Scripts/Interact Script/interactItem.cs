@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class interactItem : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class interactItem : MonoBehaviour
     public Vector3 grabOffsetPlayer; // jarak objek setelah diambil karakter
     public Vector3 dropOffsetPlayer; // jarak objek setelah ditaro karakter
     public Outline outline;
+
+    [SerializeField] private UnityEvent _nextObject;
 
     void Start()
     {
@@ -60,6 +63,7 @@ public class interactItem : MonoBehaviour
 
     void Pickup()
     {
+        _nextObject.Invoke();
         Debug.Log("membawa barang");
 
         // Matiin outline

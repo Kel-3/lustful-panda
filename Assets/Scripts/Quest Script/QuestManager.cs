@@ -6,7 +6,7 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance;  
 
-    private List<Quest> activeQuests = new List<Quest>();  
+    [SerializeField] private List<Quest> activeQuests = new List<Quest>();  
 
     void Awake()
     {

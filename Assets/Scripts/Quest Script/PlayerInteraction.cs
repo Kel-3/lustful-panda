@@ -53,7 +53,7 @@ public class PlayerInteraction : MonoBehaviour
         if (!hasGivenQuest)
         {
             
-            Quest newQuest = new Quest("Temukan Kunci", "Temukan kunci untuk membuka pintu", "Kunci");
+            Quest newQuest = new Quest("Ambil Bambo", "Ambil bambo di dekat tempat makan", "Bamboo");
             QuestManager.instance.AddQuest(newQuest);
             hasGivenQuest = true;  
             HintManager.instance.ShowHint("Cari kunci di dekat ruangan untuk membuka pintu.");
@@ -66,10 +66,10 @@ public class PlayerInteraction : MonoBehaviour
 
     void GiveInitialQuest()
     {
-        Quest initialQuest = new Quest("Quest Awal", "Temukan Kunci pembuka pintu", "Kunci");
+        Quest initialQuest = new Quest("Tutorial Rolling", "Gunakan Q untuk berguling", "Bamboo");
         QuestManager.instance.AddQuest(initialQuest);
         hasGivenQuest = true;
         isFirstQuest = false;
-        HintManager.instance.ShowHint("Mulailah dengan mencari Kunci Untuk membuka pintu.");
+        HintManager.instance.ShowHint("Mulailah dengan mencari jalan keluar.");
     }
 }
