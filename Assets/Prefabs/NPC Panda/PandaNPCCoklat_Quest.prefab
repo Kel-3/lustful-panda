@@ -409,6 +409,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe3c1d900ccd174fb72614a74f8cdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _acceleration: 1
+  _currentState: 5
   _animator: {fileID: 488191046881239598}
-  acceleration: 0.5
   _idleTime: 5
+  _isIdleWithTime: 0
+  _isRest: 0
+  _isSit: 1
+  _targetMove: {fileID: 0}
+  _agent: {fileID: 0}
+  _targetRotation: 350
+  _rotationSpeed: 2
+  maxDistance: 1
+  _isQuest: 1
+  _isComplete: 1

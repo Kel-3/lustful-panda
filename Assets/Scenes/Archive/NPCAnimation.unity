@@ -485,8 +485,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe3c1d900ccd174fb72614a74f8cdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _acceleration: 0.5
+  _currentState: 0
   _animator: {fileID: 541556903}
-  acceleration: 0.5
   _idleTime: 5
 --- !u!1 &546946094
 GameObject:
@@ -1166,6 +1167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 541556904}
+  _offset: {x: 0, y: 0, z: 0}
   minValue: {x: -5, y: 0, z: -25}
   maxValue: {x: 5, y: 21, z: 0}
 --- !u!81 &1306052277
