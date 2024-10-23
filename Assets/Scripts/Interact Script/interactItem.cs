@@ -6,11 +6,12 @@ public class interactItem : MonoBehaviour
 {
     public float pickupRadius;
     private bool canPickup = false;
-    private bool isCarryingItem = false;
+    bool isCarryingItem = false;
     public GameObject player;
     public GameObject obstacleObject; 
     public Vector3 grabOffsetPlayer; // jarak objek setelah diambil karakter
     public Vector3 dropOffsetPlayer; // jarak objek setelah ditaro karakter
+    public Outline outline;
 
     void Start()
     {
@@ -28,7 +29,7 @@ public class interactItem : MonoBehaviour
             if (obstacleObject != null)
             {
                 Debug.Log("belum bisa interact");
-                return; // Keluar dari fungsi Update jika obstacleObject masih ada
+                return;
             }
             else
             {
@@ -41,7 +42,7 @@ public class interactItem : MonoBehaviour
             canPickup = false;
         }
 
-        // Jika berada dalam radius dan tombol "E" ditekan, ambil objek
+        // Ambil item
         if (canPickup && Input.GetKeyDown(KeyCode.E))
         {
             if (!isCarryingItem)
@@ -50,7 +51,7 @@ public class interactItem : MonoBehaviour
             }
         }
 
-        // Jika pemain menekan tombol "R", drop objek
+        // Drop item
         if (isCarryingItem && Input.GetKeyDown(KeyCode.R))
         {
             Drop();
@@ -61,35 +62,42 @@ public class interactItem : MonoBehaviour
     {
         Debug.Log("membawa barang");
 
-        // Memindahkan objek ke dekat karakter dengan arah yang sesuai (menggunakan rotasi karakter)
-        transform.position = player.transform.TransformPoint(grabOffsetPlayer);
+        // Matiin outline
+        if (outline != null)
+        {
+            outline.ApplyOutline(false);
+        }
 
-        // Reset rotasi objek hanya pada sumbu Y 
+        // Positioning item
+        transform.position = player.transform.TransformPoint(grabOffsetPlayer);
         float yPlayer = player.transform.eulerAngles.y;
         transform.rotation = Quaternion.Euler(0, yPlayer, 0);
 
-        // Menjadikan objek anak dari pemain, sehingga mengikuti pemain jika diperlukan
+        // Menjadikan pemain parent, biar nempel
         transform.SetParent(player.transform);
 
-        isCarryingItem = true;  // Menandakan bahwa pemain sedang membawa objek
-        canPickup = false;      // Tidak bisa mengambil objek lagi sampai dilepaskan
+        isCarryingItem = true;
+        canPickup = false;
     }
-
 
     void Drop()
     {
         Debug.Log("barang dilepas");
 
-        // Memindahkan objek ke posisi pemain saat ini dengan arah yang sesuai (menggunakan rotasi karakter)
-        transform.position = player.transform.TransformPoint(dropOffsetPlayer);
+        // Nyalain outline
+        if (outline != null)
+        {
+            outline.ApplyOutline(true);
+        }
 
-        // Reset rotasi objek hanya pada sumbu Y dan gunakan localRotation
+        // Positioning item
+        transform.position = player.transform.TransformPoint(dropOffsetPlayer);
         transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-        // Menghapus objek sebagai anak dari pemain (tidak mengikuti pemain lagi)
+        // Lepas parent
         transform.SetParent(null);
 
-        isCarryingItem = false;  // Menandakan bahwa pemain tidak lagi membawa objek
-        canPickup = true;        // Pemain bisa mengambil objek kembali
+        isCarryingItem = false;
+        canPickup = true;
     }
 }
