@@ -96,7 +96,7 @@ public class playerController : MonoBehaviour
             if (characterController.isGrounded)
             {
                 ySpeed = 0;
-                if (Input.GetKey(KeyCode.Space)) 
+                if (Input.GetKeyDown(KeyCode.Space)) 
                 { 
                     StartCoroutine(Jumping());
                     _currentState = JumpState.Jump;
