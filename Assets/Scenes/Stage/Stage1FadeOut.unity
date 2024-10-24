@@ -254,6 +254,7 @@ Transform:
   m_Children:
   - {fileID: 717471212}
   - {fileID: 537023667}
+  - {fileID: 1603353235}
   m_Father: {fileID: 1146985046}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &141692503
@@ -554,7 +555,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 962207955}
+    m_TransformParent: {fileID: 128025251}
     m_Modifications:
     - target: {fileID: 3139517663634761888, guid: d20e508dc7e06d84da3a04ecd2749bde, type: 3}
       propertyPath: _agent
@@ -590,15 +591,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6574296563402809511, guid: d20e508dc7e06d84da3a04ecd2749bde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13
+      value: -4.6923943
       objectReference: {fileID: 0}
     - target: {fileID: 6574296563402809511, guid: d20e508dc7e06d84da3a04ecd2749bde, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.8858945
       objectReference: {fileID: 0}
     - target: {fileID: 6574296563402809511, guid: d20e508dc7e06d84da3a04ecd2749bde, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.42
+      value: 15.554253
       objectReference: {fileID: 0}
     - target: {fileID: 6574296563402809511, guid: d20e508dc7e06d84da3a04ecd2749bde, type: 3}
       propertyPath: m_LocalRotation.w
@@ -606,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6574296563402809511, guid: d20e508dc7e06d84da3a04ecd2749bde, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6574296563402809511, guid: d20e508dc7e06d84da3a04ecd2749bde, type: 3}
       propertyPath: m_LocalRotation.y
@@ -614,7 +615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6574296563402809511, guid: d20e508dc7e06d84da3a04ecd2749bde, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6574296563402809511, guid: d20e508dc7e06d84da3a04ecd2749bde, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1192,7 +1193,6 @@ Transform:
   - {fileID: 1517989044}
   - {fileID: 1817455914}
   - {fileID: 286587590}
-  - {fileID: 1603353235}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1006723901
@@ -1489,7 +1489,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
-  isOutlineActive: 1
+  isOutlineActive: 0
 --- !u!114 &1252878849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,31 +1510,7 @@ MonoBehaviour:
   outline: {fileID: 1252878848}
   _nextObject:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1252878848}
-        m_TargetAssemblyTypeName: Outline, Assembly-CSharp
-        m_MethodName: ApplyOutline
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1526215202}
-        m_TargetAssemblyTypeName: Outline, Assembly-CSharp
-        m_MethodName: ApplyOutline
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1252878850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1858,7 +1834,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
-  isOutlineActive: 1
+  isOutlineActive: 0
 --- !u!65 &1603353242
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1895,6 +1871,7 @@ MonoBehaviour:
   interactionRadius: 2
   player: {fileID: 825929967}
   taskItem: {fileID: 31331896}
+  _outline: {fileID: 1603353241}
 --- !u!1 &1608586946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,7 +1968,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429fa316a7e36064dadbd814caa9254d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeQuests: []
+  activeQuests:
+  - questName: Tutorial Quest
+    questDescription: Gunakan Q untuk berguling
+    targetItem: 
+    isCompleted: 0
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1526215202}
+          m_TargetAssemblyTypeName: Outline, Assembly-CSharp
+          m_MethodName: ApplyOutline
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1706926268}
+          m_TargetAssemblyTypeName: QuestManager, Assembly-CSharp
+          m_MethodName: NextQuest
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - questName: Tutorial Quest
+    questDescription: Hancurkan pintu dengan berguling
+    targetItem: 
+    isCompleted: 0
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1706926268}
+          m_TargetAssemblyTypeName: QuestManager, Assembly-CSharp
+          m_MethodName: NextQuest
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - questName: Tutorial Quest
+    questDescription: Cari jalan keluar
+    targetItem: 
+    isCompleted: 0
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1603353241}
+          m_TargetAssemblyTypeName: Outline, Assembly-CSharp
+          m_MethodName: ApplyOutline
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - questName: Tutorial Quest
+    questDescription: Selesai
+    targetItem: 
+    isCompleted: 0
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  _firstQuest: 1
+  _questIsComplete: 0
+  isNextQuest: 0
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1817455914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1476378826165146255, guid: f563c307668ca7c42b8794d8a41a3d81, type: 3}
@@ -2025,7 +2084,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
-  isOutlineActive: 1
+  isOutlineActive: 0
 --- !u!4 &2107855497 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1476378826165146255, guid: f563c307668ca7c42b8794d8a41a3d81, type: 3}

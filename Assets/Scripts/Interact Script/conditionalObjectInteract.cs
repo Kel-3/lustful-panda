@@ -8,10 +8,12 @@ public class conditionalObjectInteract : MonoBehaviour
     public GameObject player;
     public GameObject taskItem; // Referensi ke item quest
     private bool isCarryingTheItem = false;
+    [SerializeField] private Outline _outline;
 
     void Start()
     {
-
+        
+        _outline = GetComponent<Outline>();
     }
 
     void Update()
@@ -39,7 +41,15 @@ public class conditionalObjectInteract : MonoBehaviour
     {
         Debug.Log("interaksi objek berhasil");
 
-        Destroy(taskItem);
-        Destroy(gameObject);
+        NPCPandaStateController npcPanda = GetComponent<NPCPandaStateController>();
+        npcPanda._isComplete = true;
+        QuestManager.instance._questIsComplete = true;
+        if(_outline != null)
+        {
+            _outline.ApplyOutline(false);
+        }
+
+        // Destroy(taskItem);
+        // Destroy(gameObject);
     }
 }

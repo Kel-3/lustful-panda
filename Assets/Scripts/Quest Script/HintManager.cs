@@ -25,7 +25,7 @@ public class HintManager : MonoBehaviour
     public void ShowHint(string hint)
     {
         hintText.text = hint;
-        StartCoroutine(HideHintAfterDelay());
+        // StartCoroutine(HideHintAfterDelay());
     }
 
     

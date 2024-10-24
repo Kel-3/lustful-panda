@@ -25,7 +25,7 @@ public class NPCPandaStateController : MonoBehaviour
 
     [Header("Quest")]
     [SerializeField] private bool _isQuest = false;
-    [SerializeField] private bool _isComplete = false;
+    public bool _isComplete = false;
 
     void Update()
     {
